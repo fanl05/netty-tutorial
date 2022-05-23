@@ -9,7 +9,7 @@ public class Utils {
     }
 
     public static void consolePrintMenu() {
-        System.out.println("==================================");
+        consolePrintSeparator();
         System.out.println("send [username] [content]");
         System.out.println("gsend [group name] [content]");
         System.out.println("gcreate [group name] [m1,m2,m3...]");
@@ -17,6 +17,10 @@ public class Utils {
         System.out.println("gjoin [group name]");
         System.out.println("gquit [group name]");
         System.out.println("quit");
+        consolePrintSeparator();
+    }
+
+    public static void consolePrintSeparator() {
         System.out.println("==================================");
     }
 

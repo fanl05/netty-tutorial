@@ -84,34 +84,34 @@ public class ChatClient {
                                         WAIT_FOR_LOGIN.countDown();
                                     } else if (msg instanceof ChatResponseMessage) {
                                         ChatResponseMessage chatMsg = (ChatResponseMessage) msg;
-                                        System.out.println("=====" + chatMsg.getFrom() + " msg=====");
+                                        System.out.println("=======" + chatMsg.getFrom() + " msg=======");
                                         System.out.println("msg: " + chatMsg.getContent());
-                                        System.out.println("=====================");
+                                        Utils.consolePrintSeparator();
                                     } else if (msg instanceof GroupCreateResponseMessage) {
                                         GroupCreateResponseMessage gcreateMsg = (GroupCreateResponseMessage) msg;
-                                        System.out.println("=====group create====");
+                                        System.out.println("=======group create======");
                                         System.out.println(gcreateMsg.getComment());
                                         System.out.println("creator: " + gcreateMsg.getCreator());
                                         System.out.println("current members: " + gcreateMsg.getMembers());
-                                        System.out.println("=====================");
+                                        Utils.consolePrintSeparator();
                                     } else if (msg instanceof GroupChatResponseMessage) {
                                         GroupChatResponseMessage gchatMsg = (GroupChatResponseMessage) msg;
-                                        System.out.println("======group msg======");
+                                        System.out.println("========group msg========");
                                         System.out.println("group: " + gchatMsg.getGroupName());
                                         System.out.println("from: " + gchatMsg.getFrom());
                                         System.out.println("msg: " + gchatMsg.getContent());
-                                        System.out.println("=====================");
+                                        Utils.consolePrintSeparator();
                                     } else if (msg instanceof GroupMembersResponseMessage) {
                                         GroupMembersResponseMessage gmemberMsg = (GroupMembersResponseMessage) msg;
-                                        System.out.println("=====group members=====");
+                                        System.out.println("=======group members=======");
                                         System.out.println(gmemberMsg.getMembers());
-                                        System.out.println("=====================");
+                                        Utils.consolePrintSeparator();
                                     } else if (msg instanceof GroupJoinRequestMessage) {
                                         GroupJoinRequestMessage gjoinNoticeMsg = (GroupJoinRequestMessage) msg;
-                                        System.out.println("====group member join====");
+                                        System.out.println("======group member join======");
                                         System.out.println("group: " + gjoinNoticeMsg.getGroupName());
                                         System.out.println("username: " + gjoinNoticeMsg.getUsername());
-                                        System.out.println("=========================");
+                                        Utils.consolePrintSeparator();
                                     }
                                 }
 

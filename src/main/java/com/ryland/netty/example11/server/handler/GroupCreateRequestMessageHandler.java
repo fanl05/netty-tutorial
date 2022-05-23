@@ -14,7 +14,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author Ryland
@@ -33,7 +32,8 @@ public class GroupCreateRequestMessageHandler extends SimpleChannelInboundHandle
             ctx.writeAndFlush(new GroupCreateResponseMessage(true, groupName + " created"));
             List<Channel> channels = groupSession.getMembersChannel(groupName);
             String username = SessionFactory.getSession().getUsername(ctx.channel());
-            channels.forEach(ch -> ch.writeAndFlush(new GroupCreateResponseMessage(true,
+            channels.forEach(ch -> ch.writeAndFlush(new GroupCreateResponseMessage(
+                    true,
                     "You are into " + groupName,
                     username,
                     new ArrayList<>(members))));
