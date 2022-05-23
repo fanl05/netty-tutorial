@@ -29,7 +29,6 @@ public class GroupCreateRequestMessageHandler extends SimpleChannelInboundHandle
         GroupSession groupSession = GroupSessionFactory.getGroupSession();
         Group group = groupSession.createGroup(groupName, members);
         if (group == null) {
-            ctx.writeAndFlush(new GroupCreateResponseMessage(true, groupName + " created"));
             List<Channel> channels = groupSession.getMembersChannel(groupName);
             String username = SessionFactory.getSession().getUsername(ctx.channel());
             channels.forEach(ch -> ch.writeAndFlush(new GroupCreateResponseMessage(

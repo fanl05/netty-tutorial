@@ -1,5 +1,6 @@
 package com.ryland.netty.example11.message;
 
+import com.ryland.netty.example11.server.handler.QuitRequestMessageHandler;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -55,10 +56,14 @@ public abstract class Message implements Serializable {
      * request type byte value
      */
     public static final int RPC_MESSAGE_TYPE_REQUEST = 101;
+
     /**
      * response type byte value
      */
     public static final int RPC_MESSAGE_TYPE_RESPONSE = 102;
+
+    public static final int QUIT_REQUEST_MESSAGE = 98;
+    public static final int QUIT_NOTICE_MESSAGE = 99;
 
     private static final Map<Integer, Class<? extends Message>> MESSAGE_CLASSES = new HashMap<>();
 
@@ -79,6 +84,10 @@ public abstract class Message implements Serializable {
         MESSAGE_CLASSES.put(GROUP_MEMBERS_RESPONSE_MESSAGE, GroupMembersResponseMessage.class);
         MESSAGE_CLASSES.put(RPC_MESSAGE_TYPE_REQUEST, RpcRequestMessage.class);
         MESSAGE_CLASSES.put(RPC_MESSAGE_TYPE_RESPONSE, RpcResponseMessage.class);
+        MESSAGE_CLASSES.put(PING_MESSAGE, PingMessage.class);
+        MESSAGE_CLASSES.put(PONG_MESSAGE, PongMessage.class);
+        MESSAGE_CLASSES.put(QUIT_REQUEST_MESSAGE, QuitRequestMessage.class);
+        MESSAGE_CLASSES.put(QUIT_NOTICE_MESSAGE, QuitNoticeMessage.class);
     }
 
 }

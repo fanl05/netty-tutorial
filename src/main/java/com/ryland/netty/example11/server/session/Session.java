@@ -3,6 +3,9 @@ package com.ryland.netty.example11.server.session;
 
 import io.netty.channel.Channel;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * session management
  *
@@ -59,4 +62,18 @@ public interface Session {
      * @return username
      */
     String getUsername(Channel channel);
+
+    /**
+     * get all channels
+     *
+     * @return all channels
+     */
+    Set<Channel> getAllChannels();
+
+    /**
+     * get all usernames
+     *
+     * @return all usernames
+     */
+    Set<String> getAllUsernames();
 }

@@ -10,14 +10,14 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class GroupJoinResponseMessage extends AbstractResponseMessage {
+public class QuitNoticeMessage extends AbstractResponseMessage {
 
-    public GroupJoinResponseMessage(boolean success, String comment) {
+    public QuitNoticeMessage(boolean success, String comment) {
         super(success, comment);
     }
 
     @Override
     public int getMessageType() {
-        return GROUP_JOIN_RESPONSE_MESSAGE;
+        return QUIT_NOTICE_MESSAGE;
     }
 }

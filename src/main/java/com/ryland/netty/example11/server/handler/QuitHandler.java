@@ -19,7 +19,6 @@ public class QuitHandler extends ChannelInboundHandlerAdapter {
         log.debug("[{}] has disconnected", ctx.channel());
     }
 
-    // 当出现异常时触发
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         SessionFactory.getSession().unbind(ctx.channel());

@@ -2,7 +2,10 @@ package com.ryland.netty.example11.server.session;
 
 import io.netty.channel.Channel;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -24,7 +27,9 @@ public class SessionMemoryImpl implements Session {
     @Override
     public void unbind(Channel channel) {
         String username = channelUsernameMap.remove(channel);
-        usernameChannelMap.remove(username);
+        if (Objects.nonNull(username)) {
+            usernameChannelMap.remove(username);
+        }
         channelAttributesMap.remove(channel);
     }
 
@@ -46,6 +51,16 @@ public class SessionMemoryImpl implements Session {
     @Override
     public String getUsername(Channel channel) {
         return channelUsernameMap.get(channel);
+    }
+
+    @Override
+    public Set<Channel> getAllChannels() {
+        return channelUsernameMap.keySet();
+    }
+
+    @Override
+    public Set<String> getAllUsernames() {
+        return usernameChannelMap.keySet();
     }
 
     @Override
