@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * @author Ryland
+ */
 @Slf4j
 @ChannelHandler.Sharable
 public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcRequestMessage> {
@@ -29,7 +32,7 @@ public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcReq
         } catch (Exception e) {
             e.printStackTrace();
             String msg = e.getCause().getMessage();
-            response.setExceptionValue(new Exception("远程调用出错:" + msg));
+            response.setExceptionValue(new Exception("exception occurs in RPC: " + msg));
         }
         ctx.writeAndFlush(response);
     }
@@ -37,16 +40,16 @@ public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcReq
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         RpcRequestMessage message = new RpcRequestMessage(
                 1,
-                "cn.itcast.server.service.HelloService",
+                "com.ryland.netty.example11.server.service.HelloService",
                 "sayHello",
                 String.class,
                 new Class[]{String.class},
-                new Object[]{"张三"}
+                new Object[]{"Ryland"}
         );
         HelloService service = (HelloService)
                 ServicesFactory.getService(Class.forName(message.getInterfaceName()));
         Method method = service.getClass().getMethod(message.getMethodName(), message.getParameterTypes());
         Object invoke = method.invoke(service, message.getParameterValue());
-        System.out.println(invoke);
+        log.debug(invoke.toString());
     }
 }

@@ -1,37 +1,39 @@
 package com.ryland.netty.example11.message;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
- * @author yihang
+ * @author Ryland
  */
 @Getter
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class RpcRequestMessage extends Message {
 
     /**
-     * 调用的接口全限定名，服务端根据它找到实现
+     * reference name
      */
-    private String interfaceName;
+    private final String interfaceName;
     /**
-     * 调用接口中的方法名
+     * method name
      */
-    private String methodName;
+    private final String methodName;
     /**
-     * 方法返回类型
+     * return type
      */
-    private Class<?> returnType;
+    private final Class<?> returnType;
     /**
-     * 方法参数类型数组
+     * parameter types array
      */
-    private Class[] parameterTypes;
+    private final Class<?>[] parameterTypes;
     /**
-     * 方法参数值数组
+     * parameter values array
      */
-    private Object[] parameterValue;
+    private final Object[] parameterValue;
 
-    public RpcRequestMessage(int sequenceId, String interfaceName, String methodName, Class<?> returnType, Class[] parameterTypes, Object[] parameterValue) {
+    public RpcRequestMessage(int sequenceId, String interfaceName, String methodName, Class<?> returnType, Class<?>[] parameterTypes, Object[] parameterValue) {
         super.setSequenceId(sequenceId);
         this.interfaceName = interfaceName;
         this.methodName = methodName;

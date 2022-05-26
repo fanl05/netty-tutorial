@@ -1,20 +1,24 @@
 package com.ryland.netty.example11.message;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author yihang
+ * @author Ryland
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class RpcResponseMessage extends Message {
+
     /**
-     * 返回值
+     * return value
      */
     private Object returnValue;
+
     /**
-     * 异常值
+     * exception value
      */
     private Exception exceptionValue;
 

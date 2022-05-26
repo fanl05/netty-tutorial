@@ -9,6 +9,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author Ryland
+ */
 public class ServicesFactory {
 
     static Properties properties;
@@ -31,6 +34,10 @@ public class ServicesFactory {
         }
     }
 
+    private ServicesFactory() {
+    }
+
+    @SuppressWarnings("unchecked")
     public static <T> T getService(Class<T> interfaceClass) {
         return (T) map.get(interfaceClass);
     }
